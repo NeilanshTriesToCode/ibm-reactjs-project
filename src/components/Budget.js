@@ -5,13 +5,8 @@ const Budget = () => {
     // get state variables from the Context
     const { budget, currency, dispatch } = useContext(AppContext);
 
-    // handler for incrementing or decrementing budget
+    // handler for incrementing/decrementing budget
     const handleBudget = (value) => {
-        if(value > 20000){
-            alert(`Budget cannot exceed ${currency}20000`);
-            return;
-        }
-
         dispatch({
             type: 'SET_BUDGET',
             payload: value,
@@ -19,9 +14,9 @@ const Budget = () => {
     };
 
     return (
-        <div class="input-group mb-3">
-            <div class="input-group-text">
-                <label >Budget: £</label>
+        <div className="input-group mb-3">
+            <div className="input-group-text">
+                <label>{`Budget: ${currency}`}</label>
                 <input
                 className='form-control m-1'
                 type='number'

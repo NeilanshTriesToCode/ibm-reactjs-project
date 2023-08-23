@@ -58,6 +58,27 @@ export const AppReducer = (state, action) => {
                 budget
             };
         case 'SET_BUDGET':
+            // TASK 2
+            // making changes here based on the final project
+            // calculate current spendings
+            let currentExpenditure = state.expenses.reduce((current, dept) => current + dept.cost, 0);
+
+            if(action.payload < currentExpenditure){
+                alert(`Budget cannot be less than spendings (${state.currency}${currentExpenditure})`);
+                return {
+                    ...state,
+                };
+            }
+
+            if(action.payload > 20000){
+                alert(`Budget cannot exceed ${state.currency}20000`);
+                return {
+                    ...state,
+                };
+            }
+
+            // if everything is alright,
+            // set the budget to the new value
             action.type = "DONE";
             state.budget = action.payload;
 
